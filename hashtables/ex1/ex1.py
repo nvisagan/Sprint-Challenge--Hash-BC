@@ -8,12 +8,26 @@ from hashtables import (HashTable,
 
 def get_indices_of_item_weights(weights, length, limit):
     ht = HashTable(16)
+    for index in range(length):
+        hash_table_insert(ht, weights[index], index)
 
-    """
-    YOUR CODE HERE
-    """
+    for index in range(length):
+        next_index = hash_table_retrieve(ht, (limit - weights[index]))
+        if next_index:
+            if next_index > index:
+                return [next_index, index]
+            else:
+                return [index, next_index]
 
-    return None
+    # for i in range(length):
+    #     j = hash_table_retrieve(ht, limit - weights[i])
+    #     answer = (i, j)
+    #     return answer
+    # else:
+    #     hash_table_insert(ht, weights[i], i)
+
+
+    # return None
 
 
 def print_answer(answer):
